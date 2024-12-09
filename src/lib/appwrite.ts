@@ -1,5 +1,5 @@
 import "server-only";
-import { Client, Account, Databases } from "node-appwrite";
+import { Client, Account, Databases, Users } from "node-appwrite";
 import { cookies } from "next/headers";
 import { AUTH_COOKIE } from "@/features/auth/constants";
 
@@ -22,11 +22,17 @@ export async function createSessionClient() {
 }
 
 export async function createAdminClient() {
-  const client = new Client()
-    .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-    .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!)
-    .setKey(process.env.NEXT_APPWRITE_KEY!);
+  try {
+    const client = new Client()
+      .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
+      .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!)
+      .setKey(process.env.NEXT_APPWRITE_KEY!);
 
-  const account = new Account(client);
-  return account;
+    const account = new Account(client);
+    const users = new Users(client);
+    return { account, users };
+  } catch (error) {
+    console.error("Error initializing Appwrite client:", error);
+    throw new Error("Failed to initialize Appwrite client");
+  }
 }

@@ -14,8 +14,9 @@ const app = new Hono()
   })
   .post("/login", zValidator("json", loginSchema), async (c) => {
     const { email, password } = c.req.valid("json");
-    const account = await createAdminClient();
+    const { account } = await createAdminClient();
     const session = await account.createEmailPasswordSession(email, password);
+
     setCookie(c, AUTH_COOKIE, session.secret, {
       path: "/",
       httpOnly: true,
@@ -27,7 +28,7 @@ const app = new Hono()
   })
   .post("/signup", zValidator("json", signupSchema), async (c) => {
     const { name, email, password } = c.req.valid("json");
-    const account = await createAdminClient();
+    const { account } = await createAdminClient();
     await account.create(ID.unique(), email, password, name);
     const session = await account.createEmailPasswordSession(email, password);
 
