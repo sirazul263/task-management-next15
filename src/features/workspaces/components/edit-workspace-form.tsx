@@ -87,14 +87,7 @@ export const EditWorkspaceForm = ({
   const handleResetInviteLink = async () => {
     const ok = await confirmReset();
     if (!ok) return;
-    resetInviteLink(
-      { param: { workspaceId: initialValues.$id } },
-      {
-        onSuccess: () => {
-          router.refresh();
-        },
-      }
-    );
+    resetInviteLink({ param: { workspaceId: initialValues.$id } });
   };
 
   //Update the workspace
@@ -103,14 +96,7 @@ export const EditWorkspaceForm = ({
       ...values,
       image: values.image instanceof File ? values.image : "",
     };
-    mutate(
-      { form: finalValues, param: { workspaceId: initialValues.$id } },
-      {
-        onSuccess: () => {
-          form.reset();
-        },
-      }
-    );
+    mutate({ form: finalValues, param: { workspaceId: initialValues.$id } });
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {

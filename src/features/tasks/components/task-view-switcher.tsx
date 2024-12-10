@@ -19,12 +19,15 @@ import { DataCalendar } from "./data-calendar";
 
 interface TaskViewSwitcherProps {
   hideProjectFilter?: boolean;
+  defaultProject?: string;
 }
 
 export const TaskViewSwitcher = ({
   hideProjectFilter,
+  defaultProject,
 }: TaskViewSwitcherProps) => {
   const [{ status, assigneeId, projectId, dueDate }] = useTaskFilters();
+  const selectedProjectId = defaultProject ?? projectId;
 
   const [view, setView] = useQueryState("task-view", {
     defaultValue: "table",
@@ -37,7 +40,7 @@ export const TaskViewSwitcher = ({
 
   const { data: tasks, isLoading: isLoadingTasks } = useGetTasks({
     workspaceId,
-    projectId,
+    projectId: selectedProjectId,
     assigneeId,
     status,
     dueDate,

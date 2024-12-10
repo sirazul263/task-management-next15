@@ -66,7 +66,6 @@ export const EditProjectForm = ({
       { param: { projectId: initialValues.$id } },
       {
         onSuccess: () => {
-          router.refresh();
           window.location.href = `/workspace/${initialValues.workspaceId}`;
         },
       }
