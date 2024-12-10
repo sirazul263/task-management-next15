@@ -14,10 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
-import { useCreateTask } from "../api/use-create-task";
 import { createTaskSchema } from "../schemas";
 import { DatePicker } from "@/components/date-picker";
 import {
@@ -53,7 +50,6 @@ export const UpdateTaskForm = ({
   memberOptions,
   initialValues,
 }: UpdateTaskFormPros) => {
-  const workspaceId = useWorkspaceId();
   const { mutate, isPending } = useUpdateTask();
 
   const form = useForm<z.infer<typeof createTaskSchema>>({
@@ -77,7 +73,7 @@ export const UpdateTaskForm = ({
         },
       },
       {
-        onSuccess: ({ data }) => {
+        onSuccess: () => {
           form.reset();
           onCancel?.();
         },

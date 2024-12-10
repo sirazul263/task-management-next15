@@ -7,7 +7,7 @@ import { toast } from "sonner";
 
 type ResponseType = InferResponseType<(typeof client.api.auth.logout)["$post"]>;
 
-export const userLogout = () => {
+export const useLogout = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
@@ -25,7 +25,7 @@ export const userLogout = () => {
       queryClient.invalidateQueries({ queryKey: ["current"] });
       queryClient.invalidateQueries({ queryKey: ["workspaces"] });
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Failed to logout!");
     },
   });

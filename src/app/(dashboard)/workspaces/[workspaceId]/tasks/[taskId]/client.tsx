@@ -7,8 +7,10 @@ import { useGetSingleTask } from "@/features/tasks/api/use-get-single-task";
 import { TaskBreadcrumbs } from "@/features/tasks/components/task-breadcrumbs";
 import { TaskDescription } from "@/features/tasks/components/task-description";
 import { TaskOverview } from "@/features/tasks/components/task-overview";
+import { useTaskId } from "@/features/tasks/hooks/use-task-id";
 
-export const TaskClient = ({ taskId }: { taskId: string }) => {
+export const TaskClient = () => {
+  const taskId = useTaskId();
   const { data, isLoading } = useGetSingleTask({ taskId });
 
   if (isLoading) {

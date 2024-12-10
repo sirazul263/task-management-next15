@@ -7,11 +7,14 @@ import { Button } from "@/components/ui/button";
 import { useGetAnalytics } from "@/features/projects/api/use-get-analytics";
 import { useGetSingleProject } from "@/features/projects/api/use-get-single-project";
 import { ProjectAvatar } from "@/features/projects/components/project-avatar";
+import { useProjectId } from "@/features/projects/hooks/use-project-id";
 import { TaskViewSwitcher } from "@/features/tasks/components/task-view-switcher";
 import { PencilIcon } from "lucide-react";
 import Link from "next/link";
 
-export const ProjectIdClient = ({ projectId }: { projectId: string }) => {
+export const ProjectIdClient = () => {
+  const projectId = useProjectId();
+
   const { data: project, isLoading: isLoadingProject } = useGetSingleProject({
     projectId,
   });

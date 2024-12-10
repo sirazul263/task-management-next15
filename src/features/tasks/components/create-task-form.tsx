@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { useCreateTask } from "../api/use-create-task";
@@ -49,7 +48,6 @@ export const CreateTaskForm = ({
   projectOptions,
   memberOptions,
 }: CreateTaskFormPros) => {
-  const router = useRouter();
   const workspaceId = useWorkspaceId();
   const { mutate, isPending } = useCreateTask();
 
@@ -64,7 +62,7 @@ export const CreateTaskForm = ({
     mutate(
       { json: { ...values, workspaceId } },
       {
-        onSuccess: ({ data }) => {
+        onSuccess: () => {
           form.reset();
           onCancel?.();
           //   router.push(`/workspaces/${workspaceId}/projects/${data.$id}`);

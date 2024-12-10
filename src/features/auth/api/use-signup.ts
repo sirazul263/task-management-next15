@@ -8,7 +8,7 @@ import { toast } from "sonner";
 type ResponseType = InferResponseType<(typeof client.api.auth.signup)["$post"]>;
 type RequestType = InferRequestType<(typeof client.api.auth.signup)["$post"]>;
 
-export const userSignup = () => {
+export const useSignup = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const mutation = useMutation<ResponseType, Error, RequestType>({
@@ -24,7 +24,7 @@ export const userSignup = () => {
       router.refresh();
       queryClient.invalidateQueries({ queryKey: ["current"] });
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Failed to signup!");
     },
   });

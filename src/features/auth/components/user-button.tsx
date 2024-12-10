@@ -10,11 +10,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DottedSeparator } from "@/components/dotted-separator";
-import { userLogout } from "../api/use-logout";
+import { useLogout } from "../api/use-logout";
 
 export const UserButton = () => {
   const { data: user, isLoading } = useCurrent();
-  const { mutate: logout } = userLogout();
+  const { mutate: logout } = useLogout();
 
   if (isLoading) {
     return (

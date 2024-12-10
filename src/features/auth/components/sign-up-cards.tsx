@@ -25,10 +25,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { signupSchema } from "../schemas";
-import { userSignup } from "../api/use-signup";
+import { useSignup } from "../api/use-signup";
+import { signUpWithGithub, signUpWithGoogle } from "@/lib/oauth";
 
 export const SignUpCard = () => {
-  const { mutate, isPending } = userSignup();
+  const { mutate, isPending } = useSignup();
 
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
@@ -133,6 +134,7 @@ export const SignUpCard = () => {
           size="lg"
           className="w-full"
           disabled={isPending}
+          onClick={signUpWithGoogle}
         >
           <FcGoogle className="mr-2 size-5" />
           Signin with Google
@@ -142,6 +144,7 @@ export const SignUpCard = () => {
           size="lg"
           className="w-full"
           disabled={isPending}
+          onClick={signUpWithGithub}
         >
           <FaGithub className="mr-2 size-5" />
           Signin with Github

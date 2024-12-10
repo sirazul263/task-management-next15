@@ -27,7 +27,6 @@ export const TaskViewSwitcher = ({
   defaultProject,
 }: TaskViewSwitcherProps) => {
   const [{ status, assigneeId, projectId, dueDate }] = useTaskFilters();
-  const selectedProjectId = defaultProject ?? projectId;
 
   const [view, setView] = useQueryState("task-view", {
     defaultValue: "table",
@@ -40,7 +39,7 @@ export const TaskViewSwitcher = ({
 
   const { data: tasks, isLoading: isLoadingTasks } = useGetTasks({
     workspaceId,
-    projectId: selectedProjectId,
+    projectId: defaultProject || projectId,
     assigneeId,
     status,
     dueDate,

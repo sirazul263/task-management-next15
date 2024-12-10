@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-export const useWorkspaceId = () => {
+export const useTaskId = () => {
   const params = useParams();
-  return params.workspaceId as string;
+  return params.taskId as string;
 };

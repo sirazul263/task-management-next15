@@ -6,7 +6,7 @@ export const getCurrent = async () => {
     const { account } = await createSessionClient();
     const user = await account.get();
     return user;
-  } catch (err) {
+  } catch {
     return null;
   }
 };

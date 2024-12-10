@@ -24,7 +24,7 @@ export const useCreateWorkSpace = () => {
       toast.success("Workspace created successfully!");
       queryClient.invalidateQueries({ queryKey: ["workspaces"] });
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Failed to create new workspace");
     },
   });

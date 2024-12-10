@@ -27,11 +27,11 @@ export const useBulkUpdateTask = () => {
       }
       return await response.json();
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       toast.success("Tasks updated successfully!");
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Failed to update tasks");
     },
   });

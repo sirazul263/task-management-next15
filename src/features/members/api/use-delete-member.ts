@@ -27,11 +27,11 @@ export const useDeleteMember = () => {
       }
       return await response.json();
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       toast.success("Member deleted successfully!");
       queryClient.invalidateQueries({ queryKey: ["members"] });
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Failed to delete member");
     },
   });

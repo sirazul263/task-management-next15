@@ -32,7 +32,7 @@ export const useDeleteWorkSpace = () => {
       queryClient.invalidateQueries({ queryKey: ["workspaces"] });
       queryClient.invalidateQueries({ queryKey: ["workspace", data.$id] });
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Failed to delete workspace");
     },
   });
