@@ -101,7 +101,7 @@ export const SignInCard = () => {
           size="lg"
           className="w-full"
           disabled={isPending}
-          onClick={signUpWithGoogle}
+          onClick={() => signUpWithGoogle()}
         >
           <FcGoogle className="mr-2 size-5" />
           Signin with Google
@@ -111,7 +111,7 @@ export const SignInCard = () => {
           size="lg"
           className="w-full"
           disabled={isPending}
-          onClick={signUpWithGithub}
+          onClick={() => signUpWithGithub()}
         >
           <FaGithub className="mr-2 size-5" />
           Signin with Github
